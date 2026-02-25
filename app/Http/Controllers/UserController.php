@@ -34,9 +34,7 @@ class UserController extends Controller
         {
 
             \Session::flash('error_flash_message', trans('words.access_denied'));
-
-            return redirect('login');
-            
+            return redirect('login');            
         }
 
         if(Auth::user()->usertype=='Admin' OR Auth::user()->usertype=='Sub_Admin')
@@ -48,7 +46,8 @@ class UserController extends Controller
         $user = User::findOrFail($user_id);
  
 
-        $transactions_list = Transactions::where('user_id',$user_id)->orderBy('id','DESC')->paginate(10);
+        $transactions_list = Transactions::where('user_id',$user_id)->orderBy('id','DESC')->paginate(18);
+         
          //dd($transactions_list);
         return view('pages.user.dashboard',compact('user','transactions_list'));
     }

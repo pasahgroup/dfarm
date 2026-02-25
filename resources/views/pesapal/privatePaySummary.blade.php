@@ -63,11 +63,11 @@
 
                 </td>
                   <td>
-     {{ \Carbon\Carbon::createFromTimestamp($user->start_date)->format('d M Y') }}
+           {{$currentDate->format('d-m-Y')}}
+
                   </td>
                 <td>
-                     {{ \Carbon\Carbon::createFromTimestamp($user->exp_date)->format('d M Y') }}
-
+                   {{$futureDate->format('d-m-Y')}}
                 </td>
                 <td class="price">
  {{ number_format($tsh_cash, 2) }}

@@ -99,7 +99,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-dd('print here2');
+//dd('print here2');
 
 //Example: get data from users table
 $user_id = 1;

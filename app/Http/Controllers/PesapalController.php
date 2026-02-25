@@ -164,7 +164,6 @@ public function ipn(Request $request)
     {
 
        $user = Auth::user();
-
         $currency_code=getcong('currency_code')?getcong('currency_code'):'USD';
        $plan_id=$request->get('plan_id');
         $plan_name=$request->get('plan_name');
@@ -179,9 +178,16 @@ public function ipn(Request $request)
 
 
  $plans = SubscriptionPlan::find($plan_id);
-
  $req_url = 'https://api.exchangerate-api.com/v4/latest/USD';
 $response_json = file_get_contents($req_url);
+
+//Date
+$currentDate = Carbon::now();
+$futureDate = Carbon::now()->addDays($plans->plan_days);
+
+//$currDate=$currentDate->toDateString();
+//dd($futureDate);
+
 
 
 $response_object = json_decode($response_json);
@@ -189,17 +195,19 @@ $currency="USD";
 $base_price=($response_object->rates->TZS/$response_object->rates->$currency);
 
 
-
    $tsh_cash = round(($plans->plan_price * $base_price), 2);
    $tsh_cash_discount = round(($plan_amount* $base_price), 2);
 
-     $amount_discount_coupon=($coupon_percentage/100*$plans->plan_price)*$response_object->rates->TZS;
-  
+     $amount_discount_coupon=($coupon_percentage/100*$plans->plan_price)*$response_object->rates->TZS;  
      $amount_tsh_cash_coupon=$tsh_cash-$amount_discount_coupon;   
+   
    //dd($amount_discount_coupon);
+    //dd($user);
 
-    return view('pesapal.privatePaySummary',compact('plan_id','gateway_name','plans','tsh_cash','user','coupon_percentage','amount_discount_coupon','amount_tsh_cash_coupon','coupon_code'));
+    return view('pesapal.privatePaySummary',compact('plan_id','gateway_name','plans','tsh_cash','user','coupon_percentage','amount_discount_coupon','amount_tsh_cash_coupon','coupon_code','currentDate','futureDate'));
 
+  
+   //dd($amount_discount_coupon);
      
         if (isset($response['id']) && $response['id'] != null) {
 
@@ -289,6 +297,7 @@ $to_bepaid=$amount;
   //       }
 
 
+//dd($currency);
 
             $gateway_name=$request->get('gateway_name');
             $payment_trans = new Transactions;
@@ -317,8 +326,8 @@ $to_bepaid=$amount;
 Session::put('transaction_idw',$reference_id);
 //Session::put('transaction_id1', '4444');
 
-
 return view('pesapal.pesapal',compact('first_name','last_name','currency','to_bepaid','desc','email','phone','type','reference_id'));
+
     }
     catch(Exception $e) {
         // Handle JSON parse error...

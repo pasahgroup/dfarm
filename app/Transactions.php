@@ -12,6 +12,5 @@ class Transactions extends Model
 
 
 	public $timestamps = false;
- 
 	  
 }
