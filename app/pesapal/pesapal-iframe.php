@@ -56,7 +56,7 @@ $phonenumber    =$phone;                                   // ONE of email or ph
 
 $value = Session::get('plan_id2');
 
-dd($tracking_id);
+//dd($tracking_id);
 //Session::put('transaction_id', 999);
 
 // Define the callback_url i.e the redirect url, this page that will handle the
