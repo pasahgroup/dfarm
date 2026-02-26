@@ -54,7 +54,7 @@ $last_name      =$last_name;                 // optional
 $email          =$email;
 $phonenumber    =$phone;                                   // ONE of email or phonenumber is required
 
-$trackingID = (string) $tracking_id;
+// $trackingID = (string) $tracking_id;
 $value = Session::get('plan_id2');
 
 
@@ -118,8 +118,8 @@ $sql = "UPDATE transaction SET status='Paid',tracking_id=$tracking_id WHERE id=$
 //dd($trackingID);
 
 $action = "Updated role";
-$sql = "INSERT INTO payments (customer_id,tracking_id,reference,amount_paid,currency,created_at,updated_at) 
-        VALUES ('$user_id',$tracking_id,'$reference_id',$amount,'$currency', NOW(),NOW())";
+$sql = "INSERT INTO payments (customer_id,tracking_id,reference,amount_paid,currency,payee_date,status,created_at,updated_at) 
+        VALUES ('$user_id',$tracking_id,'$reference_id',$amount,'$currency',NOW(),'Pending', NOW(),NOW())";
 
 
 
