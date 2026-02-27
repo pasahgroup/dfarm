@@ -87,7 +87,7 @@ $value = Session::get('plan_id2');
 $protocol   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
 $base_url   = $protocol . $_SERVER['HTTP_HOST'] . "/";
 // $callback_url = $base_url . "callback.php";
-dd($base_url);
+//dd($base_url);
 
 $callback_url = $base_url . "pesapal/callback";
 
