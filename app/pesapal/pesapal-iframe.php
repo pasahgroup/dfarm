@@ -87,6 +87,7 @@ $value = Session::get('plan_id2');
 $protocol   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
 $base_url   = $protocol . $_SERVER['HTTP_HOST'] . "/";
 // $callback_url = $base_url . "callback.php";
+dd($base_url);
 
 $callback_url = $base_url . "pesapal/callback";
 
@@ -114,14 +115,14 @@ $user = mysqli_fetch_assoc($result);
 // $newRole = "Campaign Architect";
 //dd($tracking_id);
 
-$sql = "UPDATE transaction SET status='Paid',tracking_id=$tracking_id WHERE id=$reference_id";
+$sql = "UPDATE transaction SET status='Paid',reference_id=$tracking_id,tracking_id=$tracking_id WHERE id=$transaction_id";
 
 // Insert into another table
 //dd($trackingID);
 
 $action = "Updated role";
-$sql = "INSERT INTO payments (customer_id,transaction_id,tracking_id,reference,amount_paid,currency,payee_date,status,created_at,updated_at) 
-        VALUES ('$user_id',$transaction_id,$tracking_id,'$reference_id',$amount,'$currency',NOW(),'Pending', NOW(),NOW())";
+$sql = "INSERT INTO payments (customer_id,transaction_id,tracking_id,reference_id,amount_paid,currency,payee_date,status,created_at,updated_at) 
+        VALUES ('$user_id',$transaction_id,$tracking_id,'$reference_id',$amount,'$currency',NOW(),'Paid', NOW(),NOW())";
 
 
 
