@@ -5,14 +5,6 @@ session_start();
 // Pesapal parameters
 $token = $params = null;
 
-// PesaPal Sandbox is at http://demo.pesapal.com. Use this to test your
-// developement and  when you are ready to go live change to
-// https://www.pesapal.com
-
-// Register a merchant account on demo.pesapal.com and use the merchant key for
-// testing. When you are ready to go live make sure you change the key to the
-// live account registered on www.pesapal.com
-
  // $consumer_key = '6JdMvJRXbriqxfNmysvgcD0rGCjefFN3';
 // $consumer_key = 'xN2px0DCDBvE9cIr+zEK2fH00/sRjTJW';
 $consumer_key = '6JdMvJRXbriqxfNmysvgcD0rGCjefFN3';
@@ -79,8 +71,6 @@ $value = Session::get('plan_id2');
 //     echo "Error updating record: " . mysqli_error($conn);
 // }
 // mysqli_close($conn);
-
-
 
 
 // Callback URL (must be HTTPS in production)
