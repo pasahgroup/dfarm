@@ -124,7 +124,7 @@
             </table>
  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
    <label class="fieldlabels">Select Currency: * TZS</label>
-    <input class="form-control" list="currencies" name="currency" id="currency" value="TZS" required>
+    <input class="form-control" list="currencies" name="currency" id="currency" value="TZS" required readonly>
     <datalist id="currencies">
                         <option value="KES">KES</option>
                           <option value="USD">USD</option>
