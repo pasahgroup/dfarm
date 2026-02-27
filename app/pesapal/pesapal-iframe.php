@@ -105,7 +105,7 @@ $user = mysqli_fetch_assoc($result);
 // $newRole = "Campaign Architect";
 //dd($tracking_id);
 
-$sql = "UPDATE transaction SET status='Paid',reference_id=$tracking_id,tracking_id=$tracking_id WHERE id=$transaction_id";
+// $sql = "UPDATE transaction SET status='Paid',reference_id=$tracking_id,tracking_id=$tracking_id WHERE id=$transaction_id";
 
 // Insert into another table
 //dd($trackingID);
