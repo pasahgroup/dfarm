@@ -78,6 +78,8 @@ class PesapalController extends Controller
 //dd($request->all());
         $status = $request->session()->get('transaction_id');
 
+//dd($status);
+
  //echo $_SESSION['tracking_id'];
         // $tracking_id2 = Session::get('tracking_id');
         // $transaction_id = Session::get('transaction_id1');
@@ -104,9 +106,9 @@ class PesapalController extends Controller
         //     ['tracking_id' => $trackingId, 'status' => $status]
         // );
 
+dd($transaction_id);
 
 $trans_updates = Transactions::findOrFail($transaction_id);
-
     $trans_updates->update([
         'reference_id' => $reference,
         'status' => $status,
@@ -115,6 +117,17 @@ $trans_updates = Transactions::findOrFail($transaction_id);
          'tracking_id' => $trackingId,
         // other fields...
     ]);
+
+
+// $p_updates = Transactions::findOrFail($transaction_id);
+//     $trans_updates->update([
+//         'reference_id' => $reference,
+//         'status' => $status,
+//          'usd' => $plan_amount,
+//          'payment_id' => $trackingId,
+//          'tracking_id' => $trackingId,
+//         // other fields...
+//     ]);
 
 
 dd($trackingId);
