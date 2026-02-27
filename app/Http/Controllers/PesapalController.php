@@ -100,7 +100,7 @@ class PesapalController extends Controller
 
         // Update DB
         Payment::updateOrCreate(
-            ['reference' => $reference],
+            ['reference_id' => $reference],
             ['tracking_id' => $trackingId, 'status' => $status]
         );
 
