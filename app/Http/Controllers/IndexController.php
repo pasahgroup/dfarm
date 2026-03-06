@@ -253,11 +253,11 @@ class IndexController extends Controller
 
     public function login()
     {
-        if (Auth::check()) {
-                        
+        if (Auth::check()) {                        
             return redirect('dashboard'); 
         }
 
+//dd('printing ggg');
         return view('pages.user.login');
     }
 
