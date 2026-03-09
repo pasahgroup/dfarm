@@ -257,7 +257,6 @@ class IndexController extends Controller
             return redirect('dashboard'); 
         }
 
-//dd('printing ggg');
         return view('pages.user.login');
     }
 

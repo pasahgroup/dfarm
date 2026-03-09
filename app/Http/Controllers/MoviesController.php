@@ -24,13 +24,15 @@ class MoviesController extends Controller
 {
 	  
     public function movies()
-    {   
-        if(Auth::check())
+    {  
+
+         if(Auth::check())
         {             
             if(Auth::user()->usertype!="Admin" AND Auth::user()->usertype!="Sub_Admin")  
-           {
+           {          
+
               if(user_device_limit_reached(Auth::user()->id,Auth::user()->plan_id))
-              {                 
+              {            
                   return redirect('dashboard');
               }
            }
@@ -58,8 +60,6 @@ class MoviesController extends Controller
         } 
     	else if(isset($_GET['filter']))
         {
-            //dd('print2');
-
             $keyword = $_GET['filter'];  
 
             if($keyword=='old')
