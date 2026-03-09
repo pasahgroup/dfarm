@@ -25,6 +25,7 @@ class MoviesController extends Controller
 	  
     public function movies()
     {  
+        dd(Auth::user());
 
          if(Auth::check())
         {             
