@@ -266,6 +266,8 @@ class IndexController extends Controller
         $data =  \Request::except(array('_token'));     
         $inputs = $request->all();
         
+        dd($inputs);
+
         if(getcong('recaptcha_on_login'))
         {
             $rule=array(
