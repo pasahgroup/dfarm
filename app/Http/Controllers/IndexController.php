@@ -256,12 +256,12 @@ class IndexController extends Controller
         if (Auth::check()) {                        
             return redirect('dashboard'); 
         }
-
         return view('pages.user.login');
     }
 
     public function postLogin(Request $request)
     {
+        //dd('priii');
            
         $data =  \Request::except(array('_token'));     
         $inputs = $request->all();

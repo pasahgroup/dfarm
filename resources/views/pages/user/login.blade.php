@@ -173,6 +173,4 @@ function verifyCaptcha() {
   @endif
   @endif
   </script>
-
- 
 @endsection
