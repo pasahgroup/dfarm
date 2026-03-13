@@ -266,7 +266,7 @@ class IndexController extends Controller
         $data =  \Request::except(array('_token'));     
         $inputs = $request->all();
         
-        dd($inputs);
+        //dd($inputs);
 
         if(getcong('recaptcha_on_login'))
         {
@@ -286,7 +286,8 @@ class IndexController extends Controller
 
 
          $validator = \Validator::make($data,$rule);
-        // dd($validator);
+        
+         // dd($validator);
  
         if ($validator->fails())
         {
@@ -324,13 +325,12 @@ class IndexController extends Controller
           }
 
 
-            $credentials = $request->only('email', 'password');
 
+            $credentials = $request->only('email', 'password');
             $remember_me = $request->has('remember') ? true : false;  
             
-            if (Auth::attempt($credentials, $remember_me)) {
-               
-
+             
+            if (Auth::attempt($credentials, $remember_me)) {               
                 if(Auth::user()->status=='0' AND Auth::user()->deleted_at!=NULL){
                     \Auth::logout();
                      
@@ -342,16 +342,15 @@ class IndexController extends Controller
                     \Auth::logout();
                     Session::flash('login_flash_error', 'required'); 
                     return redirect('/login')->withInput()->withErrors(trans('words.account_banned'));
-                 } 
+                 }
 
+                 
                 return $this->handleUserWasAuthenticated($request);
             }
 
-
             Session::flash('login_flash_error', 'required'); 
             return redirect('/login')->withInput()->withErrors(trans('words.email_password_invalid'));
- 
-        
+  dd('pp bvbb3'); 
     }
     
      /**
