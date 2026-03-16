@@ -37,6 +37,9 @@ class MoviesController extends MainAdminController
             
          }
         
+dd('fff');
+
+
         $page_title=trans('words.movies_text');
         
         $language_list = Language::orderBy('language_name')->get();

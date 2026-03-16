@@ -25,19 +25,21 @@ class MoviesController extends Controller
 	  
     public function movies()
     {  
+        
         //dd(Auth::user());
 
          if(Auth::check())
         {             
             if(Auth::user()->usertype!="Admin" AND Auth::user()->usertype!="Sub_Admin")  
-           {          
-//dd(Auth::user());
+           {    
               if(user_device_limit_reached(Auth::user()->id,Auth::user()->plan_id))
               {            
                   return redirect('dashboard');
               }
            }
         }
+
+  dd(Auth::user());
 
         $slider= Slider::where('status',1)->whereRaw("find_in_set('Movies',slider_display_on)")->orderby('id','DESC')->get();
         

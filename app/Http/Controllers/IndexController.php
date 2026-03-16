@@ -415,12 +415,7 @@ class IndexController extends Controller
 
             }
 
-            /***Save Device End***/
-
-dd('pesapal_transaction_tracking_id');
-
-
-            return redirect('movies'); 
+                    return redirect('movies'); 
         }
         
     }
