@@ -377,7 +377,7 @@ class IndexController extends Controller
         else
         {
 
-//dd('not admin');
+
             $user_id=Auth::user()->id;
             /***Save Device***/
             $userAgent = $_SERVER['HTTP_USER_AGENT']; // change this to the useragent you want to parse
