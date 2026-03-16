@@ -299,7 +299,6 @@ class IndexController extends Controller
          //check reCaptcha
           if(getcong('recaptcha_on_login'))
           {
-
                 $recaptcha_response= $inputs['g-recaptcha-response'];
             
                 $ch = curl_init();
@@ -324,16 +323,15 @@ class IndexController extends Controller
                 }  
           }
 
-
-
-            $credentials = $request->only('email', 'password');
+         $credentials = $request->only('email', 'password');
             $remember_me = $request->has('remember') ? true : false;  
             
              
-            if (Auth::attempt($credentials, $remember_me)) {               
-                if(Auth::user()->status=='0' AND Auth::user()->deleted_at!=NULL){
+            if (Auth::attempt($credentials, $remember_me)) {    
+
+                    if(Auth::user()->status=='0' AND Auth::user()->deleted_at!=NULL){
                     \Auth::logout();
-                     
+
                     Session::flash('login_flash_error', 'required'); 
                     return redirect('/login')->withInput()->withErrors(trans('words.account_delete_msg'));
                 }
@@ -343,14 +341,10 @@ class IndexController extends Controller
                     Session::flash('login_flash_error', 'required'); 
                     return redirect('/login')->withInput()->withErrors(trans('words.account_banned'));
                  }
-
-                 
                 return $this->handleUserWasAuthenticated($request);
             }
-
             Session::flash('login_flash_error', 'required'); 
             return redirect('/login')->withInput()->withErrors(trans('words.email_password_invalid'));
-  dd('pp bvbb3'); 
     }
     
      /**
@@ -504,15 +498,13 @@ class IndexController extends Controller
         $user = new User;
 
         //$confirmation_code = str_random(30);
-
-        
-        $user->usertype = 'User';
+    
+        $user->usertype =$inputs['customer'];
         $user->name = $inputs['name']; 
         $user->register_as = $inputs['customer'];         
-        $user->email = $inputs['email'];  
+        $user->email = $inputs['email']; 
 
-        $user->password= bcrypt($inputs['password']); 
-
+        $user->password= bcrypt($inputs['password']);
         $user->save();
 
         //Welcome Email
