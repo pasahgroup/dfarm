@@ -92,8 +92,9 @@
     @include("_particles.header")
 
 @endif
+@auth
  @include("panel.panel_sidebar")
-
+@endauth
     @yield("content")   
 
 @if(!classActivePathSite('login') AND !classActivePathSite('signup') AND !classActivePathSite('password') AND !classActivePathSite('tv-login') AND !classActivePathSite('activate'))
