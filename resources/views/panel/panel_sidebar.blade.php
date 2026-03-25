@@ -1,7 +1,8 @@
 <div class="left side-menu">
       <div class="sidebar-inner slimscrollleft">
         <div id="sidebar-menu">
-          
+        
+
           @if(Auth::User()->usertype =="Admin")
           <ul>
             <li><a href="{{ URL::to('admin/dashboard') }}" class="waves-effect {{classActivePath('dashboard')}}"><i class="fa fa-dashboard"></i><span>{{trans('words.dashboard_text')}}</span></a></li>
