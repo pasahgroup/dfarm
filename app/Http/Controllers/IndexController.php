@@ -261,7 +261,6 @@ class IndexController extends Controller
 
     public function postLogin(Request $request)
     {
-        //dd('priii');
            
         $data =  \Request::except(array('_token'));     
         $inputs = $request->all();
@@ -370,14 +369,15 @@ class IndexController extends Controller
         Auth::user()->save();
         */
 
+
+
         if(Auth::user()->usertype=='Admin' OR Auth::user()->usertype=='Sub_Admin')
         {
             return redirect('admin/dashboard'); 
         }
         else
         {
-
-
+            //dd('printttq');           
             $user_id=Auth::user()->id;
             /***Save Device***/
             $userAgent = $_SERVER['HTTP_USER_AGENT']; // change this to the useragent you want to parse
@@ -405,8 +405,10 @@ class IndexController extends Controller
                 $user_device_name= $osInfo['name'].$osInfo['version'].' '.$osInfo['platform'].' '.$device;
               }
 
+
                 //Save History
                 $user_device_obj = new UsersDeviceHistory;
+
 
                 $user_device_obj->user_id = $user_id;
                 $user_device_obj->user_device_name=$user_device_name;   
@@ -414,7 +416,6 @@ class IndexController extends Controller
                 $user_device_obj->save();
 
             }
-
                     return redirect('movies'); 
         }
         

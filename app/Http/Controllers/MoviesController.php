@@ -24,31 +24,30 @@ class MoviesController extends Controller
 {
 	  
     public function movies()
-    {  
+    { 
         
-        //dd(Auth::user());
 
          if(Auth::check())
         {             
             if(Auth::user()->usertype!="Admin" AND Auth::user()->usertype!="Sub_Admin")  
-           {    
+           {   
+         
               if(user_device_limit_reached(Auth::user()->id,Auth::user()->plan_id))
-              {            
+              {             
                   return redirect('dashboard');
               }
            }
         }
 
-  dd(Auth::user());
+  //dd(Auth::user());
 
         $slider= Slider::where('status',1)->whereRaw("find_in_set('Movies',slider_display_on)")->orderby('id','DESC')->get();
-        
+        //dd($slider);
+
         $pagination_limit=18;
 
         if(isset($_GET['lang_id']))
         {   
-
-            //dd('print1');
             $movie_lang_id = $_GET['lang_id'];
 
             $movies_list = Movies::where('status',1)->where('upcoming',0)->where('movie_lang_id',$movie_lang_id)->orderBy('id','DESC')->paginate($pagination_limit);
@@ -89,15 +88,13 @@ class MoviesController extends Controller
         }
         else
         {
-            //dd('print3');
-            $movies_list = Movies::where('status',1)->where('upcoming',0)->orderBy('id','DESC')->paginate($pagination_limit);   
+        $movies_list = Movies::where('status',1)->where('upcoming',0)->orderBy('id','DESC')->paginate($pagination_limit);   
         }   
-           
 
-       return view('pages.movies.list',compact('slider','movies_list'));
-         
+       return view('pages.movies.list',compact('slider','movies_list'));         
     }
  
+    
     public function movies_details($slug,$id)
     {
         if(Auth::check())

@@ -130,7 +130,7 @@ $trans_updates = Transactions::findOrFail($transaction_id);
 //     ]);
 
 
-dd($trackingId);
+//dd($trackingId);
 
 
         Log::info("Pesapal callback: Ref=$reference, Track=$trackingId, Status=$status");

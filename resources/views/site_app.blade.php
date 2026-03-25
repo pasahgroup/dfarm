@@ -86,21 +86,19 @@
  </style>
 
 </head>
-<body>
-  
+<body>  
 
 @if(!classActivePathSite('login') AND !classActivePathSite('signup') AND !classActivePathSite('password') AND !classActivePathSite('tv-login') AND !classActivePathSite('activate'))
-
-    @include("_particles.header") 
+    @include("_particles.header")
 
 @endif
+ @include("panel.panel_sidebar")
 
     @yield("content")   
 
 @if(!classActivePathSite('login') AND !classActivePathSite('signup') AND !classActivePathSite('password') AND !classActivePathSite('tv-login') AND !classActivePathSite('activate'))
 
     @include("_particles.footer")
-
 @endif
 
 <div id="popup1" class="popup-view popup-overlay">
@@ -111,7 +109,6 @@
       </div>
     </div>
     <div class="search-results mt-4" id="search_output">
-        
  
     </div>
   </div>

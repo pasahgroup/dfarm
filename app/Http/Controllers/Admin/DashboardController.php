@@ -32,19 +32,12 @@ class DashboardController extends MainAdminController
     public function index()
     { 
 
-//dd(Auth::User());
-
             if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
             {
-dd('printt_popo');
-
                 \Session::flash('flash_message', 'Access denied!');
                 return redirect('dashboard');
              }
-           
-
-           dd('printt2');
-            
+        
     	    $language = Language::count();
             //dd($language);
             $genres = Genres::count();
@@ -56,7 +49,7 @@ dd('printt_popo');
             $plan = SubscriptionPlan::count();
             $transactions = Transactions::count();
 
-//dd($users);
+//dd('oppo');
 
             //Revenue
             $start_day = date('Y-m-d 00:00:00');

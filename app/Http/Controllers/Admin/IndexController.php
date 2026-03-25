@@ -39,7 +39,7 @@ class IndexController extends MainAdminController
     //echo bcrypt('123456');
     //exit;	
 
-
+//dd('print2');
     	
       $this->validate($request, [
             'email' => 'required|email', 'password' => 'required',
@@ -55,16 +55,18 @@ class IndexController extends MainAdminController
 
             if(Auth::user()->status=='0'){
                 \Auth::logout();
+
                 return redirect('/admin')->withErrors(trans('words.account_banned'));
             }
 
-            return $this->handleUserWasAuthenticated($request);
+//dd('popp');
+
+            return $this->handleUserWasAuthenticated($request); 
         }
 
        // return array("errors" => 'The email or the password is invalid. Please try again.');
-        //return redirect('/admin');
-       return redirect('/admin')->withErrors(trans('words.email_password_invalid'));
-        
+    //return redirect('/admin');
+       return redirect('/admin')->withErrors(trans('words.email_password_invalid'));        
     }
     
      /**
@@ -83,7 +85,8 @@ class IndexController extends MainAdminController
 
         if(Auth::user()->usertype=='Admin' OR Auth::user()->usertype=='Sub_Admin')
         {
-            return redirect('admin/dashboard'); 
+
+            return redirect('admin/dashboard');
         }
         else
         {

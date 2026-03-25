@@ -37,11 +37,8 @@ class MoviesController extends MainAdminController
             
          }
         
-dd('fff');
 
-
-        $page_title=trans('words.movies_text');
-        
+        $page_title=trans('words.movies_text');        
         $language_list = Language::orderBy('language_name')->get();
         
         $genres_list = Genres::orderBy('genre_name')->get();
@@ -79,7 +76,6 @@ dd('fff');
         
         if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
         {
-
                 \Session::flash('flash_message', trans('words.access_denied'));
 
                 return redirect('dashboard');
