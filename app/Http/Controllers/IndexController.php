@@ -375,6 +375,10 @@ class IndexController extends Controller
         {
             return redirect('admin/dashboard'); 
         }
+        elseif(Auth::user()->usertype=='Vendor')
+        {
+         return redirect('admin/vendor'); 
+        }
         else
         {
             //dd('printttq');           
