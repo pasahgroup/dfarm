@@ -1,5 +1,4 @@
-@extends("admin.admin_app")
-
+@extends("admin.vendor_admin_app")
 @section("content")
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

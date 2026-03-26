@@ -2,7 +2,7 @@
       <div class="sidebar-inner slimscrollleft">
         <div id="sidebar-menu">
           
-          @if(Auth::User()->usertype =="Admin")
+          @if(Auth::User()->usertype =="Vendor")
           <ul>
             <li><a href="{{ URL::to('admin/dashboard') }}" class="waves-effect {{classActivePath('dashboard')}}"><i class="fa fa-dashboard"></i><span>{{trans('words.dashboard_text')}}</span></a></li>
             <li><a href="{{ URL::to('admin/language') }}" class="waves-effect {{classActivePath('language')}}"><i class="fa fa-language"></i><span>{{trans('words.language_text')}}</span></a></li>

@@ -41,8 +41,7 @@
     <div id="wrapper">
    
     @include("admin.topbar") 
-    @include("admin.sidebar")
-
+    @include("admin.vendor_sidebar")
     @yield("content")
 
     </div>
