@@ -28,8 +28,8 @@ class SliderController extends MainAdminController
 		  
     }
     public function slider_list()    { 
-        
-        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
+
+        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin" AND Auth::User()->usertype!="Vendor")
             {
 
                 \Session::flash('flash_message', trans('words.access_denied'));
@@ -37,6 +37,7 @@ class SliderController extends MainAdminController
                 return redirect('dashboard');
                 
              }
+
 
         $page_title=trans('words.slider'); 
 

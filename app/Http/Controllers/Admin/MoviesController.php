@@ -29,7 +29,7 @@ class MoviesController extends MainAdminController
     }
     public function movies_list()
     { 
-        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
+        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin" AND Auth::User()->usertype!="Vendor")
         {
 
             \Session::flash('flash_message', trans('words.access_denied'));
@@ -74,7 +74,7 @@ class MoviesController extends MainAdminController
     
     public function addMovie()    { 
         
-        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
+        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin" AND Auth::User()->usertype!="Vendor")
         {
                 \Session::flash('flash_message', trans('words.access_denied'));
 
@@ -314,7 +314,7 @@ class MoviesController extends MainAdminController
     
     public function editMovie($movie_id)    
     {      
-          if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
+          if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin" AND Auth::User()->usertype!="Vendor")
         {
 
                 \Session::flash('flash_message', trans('words.access_denied'));
@@ -339,7 +339,7 @@ class MoviesController extends MainAdminController
     
     public function delete($movie_id)
     {
-    	if(Auth::User()->usertype=="Admin" OR Auth::User()->usertype=="Sub_Admin")
+    	if(Auth::User()->usertype=="Admin" OR Auth::User()->usertype=="Sub_Admin" AND Auth::User()->usertype!="Vendor")
         {
         
         $recently = RecentlyWatched::where('video_type','Movies')->where('video_id',$movie_id)->delete();
@@ -359,8 +359,7 @@ class MoviesController extends MainAdminController
             
         
         }
-    }
-    
-     
+    }  
+  
     	
 }

@@ -27,7 +27,7 @@ class HomeSectionsController extends MainAdminController
     }
     public function list()    { 
         
-        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin")
+        if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin" AND Auth::User()->usertype!="Vendor")
         {
 
             \Session::flash('flash_message', trans('words.access_denied'));
