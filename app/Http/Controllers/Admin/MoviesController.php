@@ -68,6 +68,8 @@ class MoviesController extends MainAdminController
         {
             $movies_list = Movies::orderBy('id','DESC')->paginate(12);
         } 
+
+        //dd($movies_list);
          
         return view('admin.pages.movies.list',compact('page_title','movies_list','language_list','genres_list'));
     }
