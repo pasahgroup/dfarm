@@ -71,7 +71,19 @@ class MoviesController extends MainAdminController
 
         //dd($movies_list);
          
-        return view('admin.pages.movies.list',compact('page_title','movies_list','language_list','genres_list'));
+
+
+    if(Auth::User()->usertype=="Vendor")
+        {
+         return view('admin.pages.movies.list_vendor',compact('page_title','movies_list','language_list','genres_list'));
+         
+         }else
+         {
+              return view('admin.pages.movies.list',compact('page_title','movies_list','language_list','genres_list'));
+
+         }
+       
+       
     }
     
     public function addMovie()    { 
