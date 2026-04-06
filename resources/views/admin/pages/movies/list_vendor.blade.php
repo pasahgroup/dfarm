@@ -66,7 +66,7 @@
                 <br/>
 
               <div class="row">
-                @foreach($movies_list as $i => $movies)
+                @foreach($movies_vendor_list as $i => $movies)
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" id="card_box_id_{{$movies->id}}">
 
                         <!-- Simple card -->
@@ -95,7 +95,7 @@
                 </div> 
                  
                 <nav class="paging_simple_numbers">
-                @include('admin.pagination', ['paginator' => $movies_list]) 
+                @include('admin.pagination', ['paginator' => $movies_vendor_list]) 
                 </nav>
            
               </div>

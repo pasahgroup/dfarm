@@ -29,6 +29,11 @@ class MoviesController extends MainAdminController
     }
     public function movies_list()
     { 
+
+
+$user_id=Auth::User()->id;
+//dd($user_id);
+
         if(Auth::User()->usertype!="Admin" AND Auth::User()->usertype!="Sub_Admin" AND Auth::User()->usertype!="Vendor")
         {
 
@@ -47,35 +52,47 @@ class MoviesController extends MainAdminController
         {
             $keyword = $_GET['s'];  
             $movies_list = Movies::where("video_title", "LIKE","%$keyword%")->orderBy('video_title')->paginate(12);
-
             $movies_list->appends(\Request::only('s'))->links();
+       
+
+$movies_vendor_list = Movies::where("video_title", "LIKE","%$keyword%")->where('user_id',$user_id)->orderBy('video_title')->paginate(12);
+            $movies_vendor_list->appends(\Request::only('s'))->links();
         }    
         else if(isset($_GET['language_id']))
         {
             $language_id = $_GET['language_id'];
-            $movies_list = Movies::where("movie_lang_id", "=",$language_id)->orderBy('id','DESC')->paginate(12);
+            
 
+            $movies_list = Movies::where("movie_lang_id", "=",$language_id)->orderBy('id','DESC')->paginate(12);
             $movies_list->appends(\Request::only('language_id'))->links();
+
+            $movies_vendor_list = Movies::where("movie_lang_id", "=",$language_id)->where('user_id',$user_id)->orderBy('id','DESC')->paginate(12);
+            $movies_vendor_list->appends(\Request::only('language_id'))->links();
+        
         }
         else if(isset($_GET['genres_id']))
         {
             $genres_id = $_GET['genres_id'];
             $movies_list = Movies::whereRaw("find_in_set('$genres_id',movie_genre_id)")->orderBy('id','DESC')->paginate(12);
-
             $movies_list->appends(\Request::only('genres_id'))->links();
+
+
+        $movies_vendor_list = Movies::whereRaw("find_in_set('$genres_id',movie_genre_id)")->where('user_id',$user_id)->orderBy('id','DESC')->paginate(12);
+            $movies_vendor_list->appends(\Request::only('genres_id'))->links();
         }
         else
         {
             $movies_list = Movies::orderBy('id','DESC')->paginate(12);
+            $movies_vendor_list = Movies::where('user_id',$user_id)->orderBy('id','DESC')->paginate(12);
         } 
 
-        //dd($movies_list);
+       // dd($movies_list);
          
 
 
     if(Auth::User()->usertype=="Vendor")
         {
-         return view('admin.pages.movies.list_vendor',compact('page_title','movies_list','language_list','genres_list'));
+         return view('admin.pages.movies.list_vendor',compact('page_title','movies_vendor_list','language_list','genres_list'));
          
          }else
          {
